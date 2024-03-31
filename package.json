@@ -1,0 +1,26 @@
+{
+  "name": "sangmotion",
+  "version": "1.0.0",
+  "description": "Sangmotion is a carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers.",
+  "main": "server/app.js",
+  "scripts": {
+    "postinstall": "npm run build",
+    "prebuild": "rimraf dist",
+    "build": "babel server -d dist",
+    "start": "npm run build && node dist/app.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon server/app.js --exec babel-node",
+    "lint": "./node_modules/.bin/eslint server --fix",
+    "test": "cross-env NODE_ENV=test nyc mocha  --timeout 15000  --require babel-register --require babel-polyfill server/test/* --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "pg": "cross-env NODE_ENV=development nodemon server/db/index.js --exec babel-node"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^6.0.0"
+  }
+}
