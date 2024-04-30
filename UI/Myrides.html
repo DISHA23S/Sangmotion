@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
+
 <body>
   <header>
     <div class="container">
@@ -44,12 +45,11 @@
             <a href="#" class="menu-icon"></a>
             <ul class="nav">
               <li>
-                <input type="search" name="search" placeholder="Current Location." class="search-ride" style="margin-right: 20px;">
-                <input type="search" name="search" placeholder="Destination." class="search-ride">
-                <a href="./rides.html">
-                  <i class="material-icons" style="margin-right: 300px;" >search</i> 
-                </a>
-                 
+                <input type="search" id="currentLocation" name="search" placeholder="Current Location." class="search-ride" style="margin-right: 20px;">
+                <input type="search" id="destination" name="search" placeholder="Destination." class="search-ride">
+                <button id="searchButton" style="background-color: aliceblue; color: #054752;" >
+                  <i class="material-icons" style="margin-right: 10px;">search</i>Search
+                </button>
               </li>
               <li>
                 <a href="./Myrides.html">My Rides</a>
@@ -80,7 +80,7 @@
                 <td>Nadiad</td>
                 <td>Charusat University</td>
                 <td>15-03-2024 7:30 AM</td>
-                <td>3</td>
+                <td>1</td>
                 <td>
                   <a href="./ride-details.html">
                     <button class="ride-success">Ride Details</button>
@@ -102,6 +102,50 @@
                 <td>Anand Highway</td>
                 <td>Charusat University</td>
                 <td>15-03-2024 8:30 AM</td>
+                <td>4</td>
+                <td>
+                  <a href="./ride-details.html">
+                    <button class="ride-success">Ride Details</button>
+                  </a>
+                </td>
+              </tr>
+              <tr class="row">
+                <td>Charusat University</td>
+                <td>Valetva</td>
+                <td>15-03-2024 8:00 AM</td>
+                <td>3</td>
+                <td>
+                  <a href="./ride-details.html">
+                    <button class="ride-success">Ride Details</button>
+                  </a>
+                </td>
+              </tr>
+              <tr class="row">
+                <td>Nadiad</td>
+                <td>Surat</td>
+                <td>15-03-2024 8:00 AM</td>
+                <td>2</td>
+                <td>
+                  <a href="./ride-details.html">
+                    <button class="ride-success">Ride Details</button>
+                  </a>
+                </td>
+              </tr>
+              <tr class="row">
+                <td>Nadiad</td>
+                <td>Vadodara</td>
+                <td>15-03-2024 8:00 AM</td>
+                <td>1</td>
+                <td>
+                  <a href="./ride-details.html">
+                    <button class="ride-success">Ride Details</button>
+                  </a>
+                </td>
+              </tr>
+              <tr class="row">
+                <td>Charusat University</td>
+                <td>Surat</td>
+                <td>15-03-2024 8:00 AM</td>
                 <td>3</td>
                 <td>
                   <a href="./ride-details.html">
@@ -117,9 +161,29 @@
   </section>
   <footer class="copyright">
     <div class="container">
-      <h4> © 2024 Sangmotion - IDK ROLL NO.</h4>
+      <h4> © 2024 Sangmotion - IDK ID:22IT123 & 22IT137.</h4>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+      var currentLocation = document.getElementById('currentLocation').value.toLowerCase();
+      var destination = document.getElementById('destination').value.toLowerCase();
+
+      var rows = document.getElementsByClassName('row');
+      for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var from = row.children[0].textContent.toLowerCase();
+        var to = row.children[1].textContent.toLowerCase();
+
+        if (from.includes(currentLocation) && to.includes(destination)) {
+          row.style.display = 'table-row';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    });
+  </script>
 </body>
 
 </html>

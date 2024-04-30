@@ -11,15 +11,51 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon.ico">
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
   <header>
     <div class="container">
       <div id="brand">
-        
-          <img src="./img/car1.jpg" alt="brand" height="40px">
-        
+        <img src="./img/car1.jpg" alt="brand" height="40px">
       </div>
       <nav>
         <a href="#" class="menu-icon"></a>
@@ -35,44 +71,87 @@
     </div>
   </header>
   <section class="ride">
-      <div class="container">
-        <div class="details">
-          <div class="trip">
-            <h1>Ride Information</h1>
-            <table>
-              <tr>
-                <td>From:</td>
-                <td>Nadiad</td>
-              </tr>
-              <tr>
-                <td>Destination: </td>
-                <td>Charusat University</td>
-              </tr>
-              <tr>
-                <td> Departure: </td>
-                <td>15-03-2024 7:30 AM</td>
-              </tr>
-              <tr>
-                <td> Seats: </td>
-                <td>2</td>
-              </tr>
-            </table>
-            <a href="./ride-details.html">
-              <button class="trip-btn">Accept Request</button>
-              <button class="trip-btn">Reject Request</button>
-            </a>
-            <a href="./Myrides.html">
-              <button class="trip-btn">Back</button>
-            </a>
-            
-          </div>
+    <div class="container">
+      <div class="details">
+        <div class="trip">
+          <h1>Ride Information</h1>
+          <table>
+            <tr>
+              <td>From:</td>
+              <td>Nadiad</td>
+            </tr>
+            <tr>
+              <td>Destination:</td>
+              <td>Charusat University</td>
+            </tr>
+            <tr>
+              <td>Departure:</td>
+              <td>15-03-2024 7:30 AM</td>
+            </tr>
+            <tr>
+              <td>Seats:</td>
+              <td>2</td>
+            </tr>
+          </table>
+          <button class="trip-btn accept">Accept Request</button>
+          <button class="trip-btn reject">Reject Request</button>
+          <a href="./Myrides.html">
+            <button class="trip-btn">Back</button>
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   <footer class="copyright">
     <div class="container">
       <h4>© 2024 Sangmotion - IDK ID:22IT123 & 22IT137</h4>
     </div>
   </footer>
+
+  <!-- Modal for accepting/rejecting ride -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Alert</h2>
+      <p id="notificationText"></p>
+    </div>
+  </div>
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the accept and reject buttons
+    var acceptBtn = document.querySelector('.trip-btn.accept');
+    var rejectBtn = document.querySelector('.trip-btn.reject');
+
+    // Get the <span> element that closes the modal
+    var span = document.querySelector(".close");
+
+    // When the user clicks the "Accept" button, open the modal with the accept message
+    acceptBtn.onclick = function() {
+      modal.style.display = "block";
+      document.getElementById("notificationText").innerHTML = "Request accepted!";
+    };
+
+    // When the user clicks the "Reject" button, open the modal with the reject message
+    rejectBtn.onclick = function() {
+      modal.style.display = "block";
+      document.getElementById("notificationText").innerHTML = "Request rejected.";
+    };
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
 </body>
+
 </html>
